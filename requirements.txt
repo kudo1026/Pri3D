@@ -32,3 +32,5 @@ trimesh
 open3d
 hydra-colorlog
 hydra-submitit-launcher
+
+git+git://github.com/erikwijmans/Pointnet2_PyTorch.git#egg=pointnet2_ops&subdirectory=pointnet2_ops_lib

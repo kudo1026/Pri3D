@@ -101,10 +101,30 @@ class ScanNet(Dataset):
     
     def __getitem__(self, index):
         fname1, fname2 = self.dataset[index]
-        scene_id1 = fname1.split('/')[0]
-        image_id1 = fname1.split('/')[2].split('.')[0]
-        scene_id2 = fname2.split('/')[0]
-        image_id2 = fname2.split('/')[2].split('.')[0]
+        # scene_id1 = fname1.split('/')[0]
+        # image_id1 = fname1.split('/')[2].split('.')[0]
+        # scene_id2 = fname2.split('/')[0]
+        # image_id2 = fname2.split('/')[2].split('.')[0]
+
+        scene_id1 = fname1.split('/')[-3]
+        image_id1 = fname1.split('/')[-1].split('.')[0]
+        scene_id2 = fname2.split('/')[-3]
+        image_id2 = fname2.split('/')[-1].split('.')[0]
+
+        # print('fname1')
+        # print(fname1)
+        # print('fname2')
+        # print(fname2)
+        # print('self path')
+        # print(self.path)
+        # print('scene id1')
+        # print(scene_id1)
+        # print('scene id2')
+        # print(scene_id2)
+        # print('image id1')
+        # print(image_id1)
+        # print('image id2')
+        # print(image_id2)
 
         # -------------------------------- 2D ---------------------------------
         color_path1 = os.path.join(self.path, scene_id1, 'color', image_id1 + '.png')

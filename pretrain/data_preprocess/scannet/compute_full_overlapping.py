@@ -14,9 +14,9 @@ import open3d as o3d
 def make_open3d_point_cloud(xyz, color=None, voxel_size=None):
     if np.isnan(xyz).any():
         return None
-
+    
     pcd = o3d.geometry.PointCloud()
-    pcd.points = o3d.utility.Vector3dVector(xyz)
+    pcd.points = o3d.utility.Vector3dVector(xyz[:,:3])
     if color is not None:
         pcd.colors = o3d.utility.Vector3dVector(color)
     if voxel_size is not None:
@@ -56,7 +56,7 @@ print(opt)
 print('load point clouds and downsampling...')
 
 _points = [
-    (pcd_name, make_open3d_point_cloud(np.load(pcd_name)['pcd'], voxel_size=opt.voxel_size))
+    (pcd_name, make_open3d_point_cloud(xyz=np.load(pcd_name)['pcd'][:,:3], color=np.load(pcd_name)['pcd'][:,3:6], voxel_size=opt.voxel_size))
         for pcd_name in glob.glob(os.path.join(opt.input_path, "*.npz"))
 ]
 points = [(pcd_name, pcd) for (pcd_name, pcd) in _points if pcd is not None]

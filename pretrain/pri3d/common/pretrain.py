@@ -52,7 +52,7 @@ class Pretrain():
 
     # put logger where it belongs
     if self.is_master:
-      logging.info(config.pretty())
+      # logging.info(config.pretty())
       wandb.init(project="Pri3D", name=config.train.exp_name, config=config)
     
     self.init_dataset()

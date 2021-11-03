@@ -3,8 +3,8 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
-export SCANNET_DIR=<path_to_scannet_data>
-export TARGET=<path_to_target_data>   # data destination (change here)
+export SCANNET_DIR='/data/scannet_tiny'
+export TARGET='/data/scannet_tiny_preprocessed'   # data destination (change here)
 
 reader() {
     filename=$1
@@ -22,4 +22,4 @@ reader() {
 
 export -f reader
 
-parallel -j 64 --linebuffer time reader ::: `find $SCANNET_DIR/scans/scene*/*.sens`
+parallel -j 4 --linebuffer time reader ::: `find $SCANNET_DIR/scans/scene*/*.sens`
